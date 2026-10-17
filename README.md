@@ -1,5 +1,7 @@
 # React-
 # React Learning — Components, Props & Re-rendering
+# hooks
+# warappers
 
 ## 1. Parent and Child Components
 
