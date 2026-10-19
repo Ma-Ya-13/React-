@@ -1,59 +1,37 @@
 
-import { useState } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "go to the gym",
-      description: "go to the gym today"
-    },
-    {
-      id: 2,
-      title: "study React",
-      description: "learn components"
-    },
-    {
-      id: 3,
-      title: "solve LeetCode",
-      description: "solve one question today"
-    }
-  ])
+  const [todos, setTodos] = useState([]);
 
-  function addtodos() {
-    setTodos([
-      ...todos,
-      {
-        id: Date.now(),
-        title: Math.random(),
-        description: Math.random()
-      }
-    ])
-  }
+  useEffect(() => {
+    axios.get('https://dummyjson.com/todos/random')
+      .then(function (res) {
+        setTodos([res.data]);
+      });
+  }, []);
 
   return (
     <>
-      <button onClick={addtodos}>Add Todo</button>
-
-      {todos.map(todo => (
+      {todos.map((todo) => (
         <Todo
-          key={todo.id} //to uniquely identify wich todo it is 
-          title={todo.title}
-          description={todo.description}
+          key={todo.id}
+          title={todo.todo}
+          description={todo.completed ? 'Completed' : 'Pending'}
         />
       ))}
     </>
-  )
+  );
 }
 
 function Todo({ title, description }) {
   return (
     <div>
       <h1>{title}</h1>
-      <h4>{description}</h4>
+      <p>{description}</p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
