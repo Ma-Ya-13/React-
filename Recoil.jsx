@@ -1,6 +1,6 @@
 import { RecoilRoot , useRecoilState , useRecoilValue } from "recoil";
 import {countAtoms} from "./store/atoms/count.jsx"
-import "./App.css";
+
 
 
 function App() {
