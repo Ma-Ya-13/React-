@@ -23,15 +23,26 @@ function App() {
     )
 
   }
-    function CountRender(){
+   
+ function CountRender(){
        const count = useRecoilValue(countAtoms);
        return (
         <>
        <h2>{count}</h2>;
+       <EvenRerender />
         </>
        )
 
     }
+     function EvenRerender(){
+      const iseven = useRecoilValue(evenSelector);
+       return (
+        <div>
+           {(iseven ? "Number is Even" : null)}
+          
+        </div>
+       )
+     }
     function Button(){
       const [count , setCount] = useRecoilState(countAtoms);
       return (
